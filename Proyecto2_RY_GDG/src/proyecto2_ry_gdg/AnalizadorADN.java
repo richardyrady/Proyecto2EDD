@@ -12,6 +12,7 @@ import java.io.IOException;
  * Clase encargada de la lógica de negocio para procesar secuencias de ADN.
  * Lee un archivo, extrae la secuencia, la divide en patrones y los
  * carga en una tabla hash.
+ * @author Richard Yrady, Gianmarco Del Giudice
  */
 public class AnalizadorADN {
 

@@ -7,6 +7,7 @@ package proyecto2_ry_gdg;
 /**
  * Representa un nodo dentro de la tabla hash. Contiene el patrón,
  * sus datos asociados y un enlace al siguiente nodo en caso de colisión.
+ * @author Richard Yrady, Gianmarco Del Giudice
  */
 class NodoHash {
     String patron;

@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Almacena los datos asociados a un patrón de ADN: su frecuencia y sus
  * ubicaciones.
+ * @author Richard Yrady, Gianmarco Del Giudice
  */
 public class DatosPatron {
 

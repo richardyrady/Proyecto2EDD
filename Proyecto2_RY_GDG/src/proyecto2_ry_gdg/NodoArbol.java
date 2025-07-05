@@ -9,7 +9,7 @@ package proyecto2_ry_gdg;
  * Representa un nodo dentro del Árbol Binario de Búsqueda.
  *
  * El árbol se ordena por la frecuencia del patrón.
- * @author Hp Victus
+ * @author Richard Yrady, Gianmarco Del Giudice
 */
 
 class NodoArbol {

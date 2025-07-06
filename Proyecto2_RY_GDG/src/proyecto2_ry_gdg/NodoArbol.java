@@ -4,15 +4,11 @@
  */
 package proyecto2_ry_gdg;
 
-
 /**
  * Representa un nodo dentro del Árbol Binario de Búsqueda.
- *
- * El árbol se ordena por la frecuencia del patrón.
- * @author Richard Yrady, Gianmarco Del Giudice
-*/
-
-class NodoArbol {
+ * Debe ser pública para ser accesible desde otras clases en el mismo paquete.
+ */
+public class NodoArbol {
     String patron;
     int frecuencia;
     DatosPatron datos; // Referencia a los datos completos (incluye ubicaciones)

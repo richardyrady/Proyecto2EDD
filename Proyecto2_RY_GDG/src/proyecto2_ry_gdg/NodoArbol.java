@@ -7,18 +7,19 @@ package proyecto2_ry_gdg;
 /**
  * Representa un nodo dentro del Árbol Binario de Búsqueda.
  * Debe ser pública para ser accesible desde otras clases en el mismo paquete.
+ * @author Richard Yrady, Gianmarco Del Giudice
  */
 public class NodoArbol {
-    String patron;
-    int frecuencia;
-    DatosPatron datos; // Referencia a los datos completos (incluye ubicaciones)
-    NodoArbol izquierda;
-    NodoArbol derecha;
+    
+    // Atributos privados para una correcta encapsulación
+    private String patron;
+    private int frecuencia;
+    private DatosPatron datos;
+    private NodoArbol izquierda;
+    private NodoArbol derecha;
 
     /**
      * Constructor del NodoArbol.
-     * @param patron La secuencia de 3 letras de ADN.
-     * @param datos Los datos asociados al patrón (frecuencia y ubicaciones).
      */
     public NodoArbol(String patron, DatosPatron datos) {
         this.patron = patron;

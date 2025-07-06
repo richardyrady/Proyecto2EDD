@@ -13,6 +13,7 @@ import java.util.TreeMap;
 /**
  * Clase encargada de mapear los patrones de ADN a aminoácidos y generar
  * los reportes correspondientes.
+ * @author Richard Yrady, Gianmarco Del Giudice
  */
 public class MapeoAminoacidos {
 

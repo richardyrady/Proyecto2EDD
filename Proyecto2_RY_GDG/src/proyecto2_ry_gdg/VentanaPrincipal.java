@@ -27,30 +27,30 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class VentanaPrincipal extends JFrame {
 
-    // --- Atributos de Estructuras de Datos ---
+    // --- Atributos de Estructuras de Datos y Lógica ---
     private final MiHashTable tablaHash;
     private final AnalizadorADN analizador;
+    private final MapeoAminoacidos mapeador;
+    
 
     // --- Atributos de Componentes GUI ---
     private JButton btnCargarArchivo;
     private JTextArea txtResultados;
-    
-    // --- Atributos para Fase 3 (Integrante 1) ---
+    private JComboBox<String> cmbPatrones;
     private JButton btnBuscarPatron;
     private JButton btnReporteColisiones;
-    private JComboBox<String> cmbPatrones;
-
-    // --- ATRIBUTOS AÑADIDOS PARA FASE 3 (Integrante 2) ---
     private JButton btnListarPorFrecuencia;
     private JButton btnMasFrecuente;
     private JButton btnMenosFrecuente;
+    private JButton btnReporteAminoacidos;
 
     public VentanaPrincipal() {
         this.tablaHash = new MiHashTable(97); 
         this.analizador = new AnalizadorADN(this.tablaHash);
+        this.mapeador = new MapeoAminoacidos(); // Se inicializa el mapeador
 
         setTitle("Proyecto 2: Bioinformática");
-        setSize(800, 600);
+        setSize(900, 600); // Un poco más ancho para los nuevos botones
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -77,10 +77,9 @@ public class VentanaPrincipal extends JFrame {
         btnBuscarPatron = new JButton("Buscar Patrón");
         btnBuscarPatron.setEnabled(false);
 
-        btnReporteColisiones = new JButton("Reporte de Colisiones");
+        btnReporteColisiones = new JButton("Reporte Colisiones");
         btnReporteColisiones.setEnabled(false);
         
-        // --- BOTONES NUEVOS AÑADIDOS AQUÍ ---
         btnListarPorFrecuencia = new JButton("Listar por Frecuencia");
         btnListarPorFrecuencia.setEnabled(false);
 
@@ -90,6 +89,9 @@ public class VentanaPrincipal extends JFrame {
         btnMenosFrecuente = new JButton("Menos Frecuente");
         btnMenosFrecuente.setEnabled(false);
 
+        btnReporteAminoacidos = new JButton("Reporte Aminoácidos");
+        btnReporteAminoacidos.setEnabled(false);
+
         panelControles.add(new JLabel("Patrón:"));
         panelControles.add(cmbPatrones);
         panelControles.add(btnBuscarPatron);
@@ -97,6 +99,7 @@ public class VentanaPrincipal extends JFrame {
         panelControles.add(btnListarPorFrecuencia);
         panelControles.add(btnMasFrecuente);
         panelControles.add(btnMenosFrecuente);
+        panelControles.add(btnReporteAminoacidos);
 
         add(panelControles, BorderLayout.SOUTH);
     }
@@ -105,11 +108,10 @@ public class VentanaPrincipal extends JFrame {
         btnCargarArchivo.addActionListener(e -> cargarArchivo());
         btnBuscarPatron.addActionListener(e -> buscarPatronSeleccionado());
         btnReporteColisiones.addActionListener(e -> mostrarReporteColisiones());
-        
-        // --- LISTENERS NUEVOS AÑADIDOS AQUÍ ---
         btnListarPorFrecuencia.addActionListener(e -> listarPorFrecuencia());
         btnMasFrecuente.addActionListener(e -> mostrarMasFrecuente());
         btnMenosFrecuente.addActionListener(e -> mostrarMenosFrecuente());
+        btnReporteAminoacidos.addActionListener(e -> mostrarReporteAminoacidos());
     }
 
     private void cargarArchivo() {
@@ -155,6 +157,7 @@ public class VentanaPrincipal extends JFrame {
         btnListarPorFrecuencia.setEnabled(true);
         btnMasFrecuente.setEnabled(true);
         btnMenosFrecuente.setEnabled(true);
+        btnReporteAminoacidos.setEnabled(true);
     }
     
     private void buscarPatronSeleccionado() {
@@ -176,7 +179,6 @@ public class VentanaPrincipal extends JFrame {
         txtResultados.setText(reporte);
     }
     
-    // --- MÉTODOS NUEVOS AÑADIDOS AQUÍ ---
     private MiArbolBinario construirArbolDeFrecuencias() {
         MiArbolBinario arbol = new MiArbolBinario();
         List<EntradaHash> entradas = tablaHash.getTodasLasEntradas();
@@ -223,6 +225,15 @@ public class VentanaPrincipal extends JFrame {
         } else {
             txtResultados.setText("No hay datos para analizar.");
         }
+    }
+
+    private void mostrarReporteAminoacidos() {
+        if (tablaHash == null) {
+            txtResultados.setText("Por favor, cargue un archivo de ADN primero.");
+            return;
+        }
+        String reporte = mapeador.generarReporte(tablaHash);
+        txtResultados.setText(reporte);
     }
     
     public static void main(String[] args) {
